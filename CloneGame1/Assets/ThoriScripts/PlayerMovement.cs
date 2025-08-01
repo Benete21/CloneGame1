@@ -9,11 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 movement;
     
-    private Animator animator;
+   // private Animator animator;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -29,6 +29,5 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        animator.SetFloat("xVelocity", movement.x);
     }
 }
