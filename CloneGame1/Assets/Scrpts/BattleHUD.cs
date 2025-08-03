@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class BattleHUD : MonoBehaviour
 {
 
-    public TextMeshPro nameTextPlayer;
+    public Text nameTextPlayer;
     public Slider hpSliderPlayer;
-    public TextMeshPro nameTextEnemy;
+    public Text nameTextEnemy;
     public Slider hpSliderEnemy;
 
     public void SetHUD(Unit_Info unit)

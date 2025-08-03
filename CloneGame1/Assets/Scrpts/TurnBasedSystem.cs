@@ -18,7 +18,7 @@ public class BattleSystem : MonoBehaviour
     Unit_Info playerUnit;
     Unit_Info enemyUnit;
 
-    public TextMeshPro dialogueText;
+    public Text dialogueText;
     public int BP_Points;
 
     public BattleHUD playerHUD;
