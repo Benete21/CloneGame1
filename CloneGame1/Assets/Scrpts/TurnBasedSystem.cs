@@ -27,6 +27,10 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    public GameObject [] AttackCards = new GameObject[4];
+    public GameObject AttackCardUI;
+    public GameObject PlayerUIABDR;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -157,6 +161,14 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(EnemyTurn());
     }
 
+    public void OnAttackButtonShow()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        ShowAttacks();
+    }
+
     public void OnAttackButton()
     {
         if (state != BattleState.PLAYERTURN)
@@ -185,7 +197,17 @@ public class BattleSystem : MonoBehaviour
             return;
         StartCoroutine(OnDefault());
     }
+    public void ShowAttacks()
+    {
+        PlayerUIABDR.SetActive(false);
+        AttackCardUI.SetActive(true);
+    }
+    public void  ShowMenuAgain()
+    {
+        PlayerUIABDR.SetActive(true );
+        AttackCardUI.SetActive(false);
 
+    }
 }
 
 
