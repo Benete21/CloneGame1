@@ -91,7 +91,7 @@ MonoBehaviour:
   Plyer_Name: John
   Enemy_Name: 
   Player_Health_Max: 100
-  Player_Health_Curr: 100
+  Player_Health_Curr: 50
   Enemy_Health_Max: 100
   Enemy_Health_Curr: 100
   damage: 50
