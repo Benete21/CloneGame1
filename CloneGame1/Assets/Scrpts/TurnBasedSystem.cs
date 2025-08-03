@@ -1,63 +1,149 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
-public class TurnBasedSystem : MonoBehaviour
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+
+public class BattleSystem : MonoBehaviour
 {
 
-    public int Player_Health_Max;
-    public int Player_Health_Curr;
-    public int Enemy_Health_Max;
-    public int Enemy_Health_Curr;
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
 
-    public int damage;
-    public int Default;
-    public int Brave;
-    public int Gold;
-    public int Player_Speed;
-    public int Enemy_Speed;
+    public Transform playerBattleStation;
+    public Transform enemyBattleStation;
+
+    Unit_Info playerUnit;
+    Unit_Info enemyUnit;
+
+    public Text dialogueText;
     public int BP_Points;
 
+    public BattleHUD playerHUD;
+    public BattleHUD enemyHUD;
 
-    public bool PlayerTurn;
-    public bool EnemyTurn;
+    public BattleState state;
 
-    public GameObject AttackUI;
-
+    // Start is called before the first frame update
     void Start()
     {
+        state = BattleState.START;
+        StartCoroutine(SetupBattle());
+    }
+
+    IEnumerator SetupBattle()
+    {
+        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
+        playerUnit = playerGO.GetComponent<Unit_Info>();
+
+        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+        enemyUnit = enemyGO.GetComponent<Unit_Info>();
+
+        dialogueText.text = "A wild " + enemyUnit.Enemy_Name + " approaches...";
+
+        playerHUD.SetHUD(playerUnit);
+        enemyHUD.SetHUD(enemyUnit);
+
+        yield return new WaitForSeconds(2f);
+
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+    }
+
+    IEnumerator PlayerAttack()
+    {
+        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage);
+
+        enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
+        dialogueText.text = "The attack is successful!";
+
+        yield return new WaitForSeconds(2f);
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        dialogueText.text = enemyUnit.Plyer_Name + " attacks!";
+
+        yield return new WaitForSeconds(1f);
+
+        bool isDead = playerUnit.PlayerTakeDamage(enemyUnit.damage);
+
+        playerHUD.SetHP(playerUnit.Player_Health_Curr);
+
+        yield return new WaitForSeconds(1f);
+
+        if (isDead)
+        {
+            state = BattleState.LOST;
+            EndBattle();
+        }
+        else
+        {
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
+        }
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void EndBattle()
     {
-        
+        if (state == BattleState.WON)
+        {
+            dialogueText.text = "You won the battle!";
+        }
+        else if (state == BattleState.LOST)
+        {
+            dialogueText.text = "You were defeated.";
+        }
     }
-    public void PlayerAttack()
+
+    void PlayerTurn()
     {
-        AttackUI.SetActive (true);
+        dialogueText.text = "Choose an action:";
     }
-    public void SelectAttackCard()
+
+    IEnumerator PlayerHeal()
     {
-        
+        playerUnit.HealPlayer(5);
+
+        playerHUD.SetHP(playerUnit.Player_Health_Curr);
+        dialogueText.text = "You feel renewed strength!";
+
+        yield return new WaitForSeconds(2f);
+
+        state = BattleState.ENEMYTURN;
+        StartCoroutine(EnemyTurn());
     }
-    public void Attack_01()
+
+    public void OnAttackButton()
     {
-        damage += Random.Range(1,2);    
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        StartCoroutine(PlayerAttack());
     }
-    public void Attack_02()
+
+    public void OnHealButton()
     {
-        damage += Random.Range(1, 2);
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        StartCoroutine(PlayerHeal());
     }
-    public void Attack_03()
-    {
-        damage += Random.Range(1, 2);
-    }
-    public void Attack_04()
-    {
-        damage += Random.Range(1, 2);
-    }
+
 }
+
+
+
