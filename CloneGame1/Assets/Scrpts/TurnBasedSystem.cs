@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ public class BattleSystem : MonoBehaviour
     Unit_Info playerUnit;
     Unit_Info enemyUnit;
 
-    public Text dialogueText;
+    public TextMeshPro dialogueText;
     public int BP_Points;
 
     public BattleHUD playerHUD;

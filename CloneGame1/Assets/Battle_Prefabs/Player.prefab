@@ -92,7 +92,7 @@ MonoBehaviour:
   Enemy_Name: 
   Player_Health_Max: 100
   Player_Health_Curr: 100
-  Enemy_Health_Max: 0
-  Enemy_Health_Curr: 0
-  damage: 0
+  Enemy_Health_Max: 100
+  Enemy_Health_Curr: 100
+  damage: 50
   Gold: 0

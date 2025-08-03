@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BattleHUD : MonoBehaviour
 {
 
-    public Text nameTextPlayer;
+    public TextMeshPro nameTextPlayer;
     public Slider hpSliderPlayer;
-    public Text nameTextEnemy;
+    public TextMeshPro nameTextEnemy;
     public Slider hpSliderEnemy;
 
     public void SetHUD(Unit_Info unit)

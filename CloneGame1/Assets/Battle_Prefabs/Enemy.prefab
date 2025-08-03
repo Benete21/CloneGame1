@@ -90,15 +90,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Plyer_Name: 
   Enemy_Name: Evil_Guy
-  Player_Health_Max: 0
-  Player_Health_Curr: 0
-  Enemy_Health_Max: 0
-  Enemy_Health_Curr: 0
-  damage: 0
+  Player_Health_Max: 100
+  Player_Health_Curr: 100
+  Enemy_Health_Max: 100
+  Enemy_Health_Curr: 100
+  damage: 45
   Gold: 0
-  Player_Speed: 0
-  Enemy_Speed: 0
-  BP_Points: 0
-  PlayerTurn: 0
-  EnemyTurn: 0
-  AttackUI: {fileID: 0}
