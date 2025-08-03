@@ -19,6 +19,7 @@ public class BattleSystem : MonoBehaviour
     Unit_Info enemyUnit;
 
     public Text dialogueText;
+    public Text BraveText;
     public int BP_Points;
 
     public BattleHUD playerHUD;
@@ -127,6 +128,34 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.ENEMYTURN;
         StartCoroutine(EnemyTurn());
     }
+    IEnumerator OnBrave()
+    {
+        playerUnit.PlayerBrave();
+
+        dialogueText.text = "You Braved";
+        BraveText.text = "BP" + playerUnit.BP_Point.ToString();
+
+        yield return new WaitForSeconds(2f);
+
+        if(playerUnit.BP_Point == -2)
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+    }
+
+    IEnumerator OnDefault()
+    {
+        playerUnit.PlayerDefault();
+
+        dialogueText.text = "You Defaulted";
+        BraveText.text = "BP" + playerUnit.BP_Point.ToString();
+
+        yield return new WaitForSeconds(2f);
+
+        state = BattleState.ENEMYTURN;
+        StartCoroutine(EnemyTurn());
+    }
 
     public void OnAttackButton()
     {
@@ -142,6 +171,19 @@ public class BattleSystem : MonoBehaviour
             return;
 
         StartCoroutine(PlayerHeal());
+    }
+
+    public void OnBraveButton()
+    {
+        if(state != BattleState.PLAYERTURN)
+            return;
+        StartCoroutine(OnBrave());
+    }
+    public void OnDefaultButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+        StartCoroutine(OnDefault());
     }
 
 }

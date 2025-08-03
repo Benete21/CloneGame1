@@ -18,6 +18,8 @@ public class Unit_Info : MonoBehaviour
     public int damage;
     public int Gold;
 
+    public int BP_Point;
+
     public bool PlayerTakeDamage(int dmg)
     {
         Player_Health_Curr  -= dmg;
@@ -44,5 +46,14 @@ public class Unit_Info : MonoBehaviour
         Player_Health_Curr += amount;
         if (Player_Health_Curr > Player_Health_Max)
             Player_Health_Curr = Player_Health_Max;
+    }
+    public void PlayerBrave()
+    {
+        if(BP_Point >= -2)
+        BP_Point -= 1;
+    }
+    public void PlayerDefault()
+    {
+        BP_Point += 1;
     }
 }
