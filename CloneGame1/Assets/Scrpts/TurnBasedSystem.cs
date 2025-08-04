@@ -171,8 +171,7 @@ public class BattleSystem : MonoBehaviour
         AttackCardsNumbers[2].text = playerUnit.damage03.ToString();
         AttackCardsNumbers[3].text = playerUnit.damage04.ToString();
 
-       playerUnit.BP_Point += 1;
-        playerUnit.BP_Point = Mathf.Max(BP_Points, 0);
+        playerUnit.BP_Point += 1;
         BraveText.text = "BP" + playerUnit.BP_Point.ToString();
         FinalAttack = 0;
         FinalAmount.text = FinalAttack.ToString();

@@ -2406,6 +2406,7 @@ MonoBehaviour:
   dialogueText: {fileID: 860998151}
   BraveText: {fileID: 1900536947}
   FinalAmount: {fileID: 327400762}
+  Goldtext: {fileID: 1634505114}
   BP_Points: 0
   Brave_counter: 0
   FinalAttack: 0
@@ -3803,6 +3804,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   BraveText: {fileID: 0}
   FinalAmount: {fileID: 0}
+  Goldtext: {fileID: 0}
   BP_Points: 0
   Brave_counter: 0
   FinalAttack: 0

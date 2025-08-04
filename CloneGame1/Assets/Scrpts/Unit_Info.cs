@@ -59,6 +59,6 @@ public class Unit_Info : MonoBehaviour
     }
     public void PlayerDefault()
     {
-        BP_Point += 2;
+        BP_Point += 1;
     }
 }
