@@ -139,6 +139,10 @@ public class BattleSystem : MonoBehaviour
         BraveText.text = "BP" + playerUnit.BP_Point.ToString();
         FinalAttack = 0;
 
+        foreach (GameObject i in AttackCards)
+        {
+            i.SetActive(true);
+        }
 
     }
 
@@ -208,6 +212,13 @@ public class BattleSystem : MonoBehaviour
             return;
             FinalAttack += playerUnit.damage01;
         FinalAmount.text = FinalAttack.ToString();
+        AttackCards[0].SetActive(false);
+        if(playerUnit.BP_Point <= 0)
+        {
+            AttackCards[1].SetActive(false);
+            AttackCards[2].SetActive(false);
+            AttackCards[3].SetActive(false);
+        }
            
     }
     public void OnAttackButton02()
@@ -216,7 +227,13 @@ public class BattleSystem : MonoBehaviour
             return;
             FinalAttack += playerUnit.damage02;
         FinalAmount.text = FinalAttack.ToString();
-
+        AttackCards[1].SetActive(false);
+        if (playerUnit.BP_Point <= 0)
+        {
+            AttackCards[0].SetActive(false);
+            AttackCards[2].SetActive(false);
+            AttackCards[3].SetActive(false);
+        }
 
 
     }
@@ -226,6 +243,13 @@ public class BattleSystem : MonoBehaviour
             return;
         FinalAttack += playerUnit.damage03;
         FinalAmount.text = FinalAttack.ToString();
+        AttackCards[2].SetActive(false);
+        if (playerUnit.BP_Point <= 0)
+        {
+            AttackCards[1].SetActive(false);
+            AttackCards[0].SetActive(false);
+            AttackCards[3].SetActive(false);
+        }
 
 
 
@@ -236,7 +260,13 @@ public class BattleSystem : MonoBehaviour
             return;
         FinalAttack += playerUnit.damage04;
         FinalAmount.text = FinalAttack.ToString();
-        
+        AttackCards[3].SetActive(false);
+        if (playerUnit.BP_Point <= 0)
+        {
+            AttackCards[1].SetActive(false);
+            AttackCards[2].SetActive(false);
+            AttackCards[0].SetActive(false);
+        }
 
     }
 
