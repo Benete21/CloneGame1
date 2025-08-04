@@ -54,7 +54,7 @@ public class Unit_Info : MonoBehaviour
     }
     public void PlayerBrave()
     {
-        if(BP_Point > -2)
+        if(BP_Point > 0)
         BP_Point -= 1;
     }
     public void PlayerDefault()

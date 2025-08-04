@@ -175,6 +175,7 @@ public class BattleSystem : MonoBehaviour
         BraveText.text = "BP" + playerUnit.BP_Point.ToString();
         FinalAttack = 0;
         FinalAmount.text = FinalAttack.ToString();
+        Brave_counter = 0;
 
         foreach (GameObject i in AttackCards)
         {
@@ -206,18 +207,18 @@ public class BattleSystem : MonoBehaviour
     }
     IEnumerator OnBrave()
     {
-        if (Brave_counter > -2)
+        if (playerUnit.BP_Point > 0)
         {
             playerUnit.PlayerBrave();
 
             dialogueText.text = "You Braved";
             BraveText.text = "BP" + playerUnit.BP_Point.ToString();
-            yield return new WaitForSeconds(2f);
             Brave_counter++;
+            yield return new WaitForSeconds(2f);
         }
         else
         {
-            dialogueText.text = "Cannot Brave Anymore";
+            dialogueText.text = "Cannot Brave";
         }
 
 
@@ -254,47 +255,74 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton01()
     {
+        bool Brave_counter_bool = false;
+        if (Brave_counter > 0)
+        {
+            Brave_counter_bool = true;
+        }
         if (state != BattleState.PLAYERTURN)
             return;
             FinalAttack += playerUnit.damage01;
         FinalAmount.text = FinalAttack.ToString();
         AttackCards[0].SetActive(false);
-        if(playerUnit.BP_Point <= 0)
+        if(Brave_counter_bool == false)
         {
             AttackCards[1].SetActive(false);
             AttackCards[2].SetActive(false);
             AttackCards[3].SetActive(false);
         }
+        else
+        {
+            Brave_counter--;
+        }
            
     }
     public void OnAttackButton02()
     {
+        bool Brave_counter_bool = false;
+        if (Brave_counter > 0)
+        {
+            Brave_counter_bool = true;
+        }
         if (state != BattleState.PLAYERTURN)
             return;
             FinalAttack += playerUnit.damage02;
         FinalAmount.text = FinalAttack.ToString();
         AttackCards[1].SetActive(false);
-        if (playerUnit.BP_Point <= 0)
+        if (Brave_counter_bool == false)
         {
             AttackCards[0].SetActive(false);
             AttackCards[2].SetActive(false);
             AttackCards[3].SetActive(false);
+        }
+        else
+        {
+            Brave_counter--;
         }
 
 
     }
     public void OnAttackButton03()
     {
+        bool Brave_counter_bool = false;
+        if (Brave_counter > 0)
+        {
+            Brave_counter_bool = true;
+        }
         if (state != BattleState.PLAYERTURN)
             return;
         FinalAttack += playerUnit.damage03;
         FinalAmount.text = FinalAttack.ToString();
         AttackCards[2].SetActive(false);
-        if (playerUnit.BP_Point <= 0)
+        if (Brave_counter_bool == false)
         {
             AttackCards[1].SetActive(false);
             AttackCards[0].SetActive(false);
             AttackCards[3].SetActive(false);
+        }
+        else
+        {
+            Brave_counter--;
         }
 
 
@@ -302,16 +330,25 @@ public class BattleSystem : MonoBehaviour
     }
     public void OnAttackButton04()
     {
+        bool Brave_counter_bool = false;
+        if (Brave_counter > 0)
+        {
+            Brave_counter_bool = true;
+        }
         if (state != BattleState.PLAYERTURN)
             return;
         FinalAttack += playerUnit.damage04;
         FinalAmount.text = FinalAttack.ToString();
         AttackCards[3].SetActive(false);
-        if (playerUnit.BP_Point <= 0)
+        if (Brave_counter_bool == false)
         {
             AttackCards[1].SetActive(false);
             AttackCards[2].SetActive(false);
             AttackCards[0].SetActive(false);
+        }
+        else
+        {
+            Brave_counter--;
         }
 
     }
