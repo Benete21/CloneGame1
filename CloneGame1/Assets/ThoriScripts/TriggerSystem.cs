@@ -6,30 +6,18 @@ using UnityEngine;
 public class TriggerSystem : MonoBehaviour
 {
     public CameraFollow cameraFollow;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        /*if (other.gameObject.name == "EnemyFight")
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Test");
-        }*/
-        
-        if (other.CompareTag("Enemy"))
-        {
-            cameraFollow.EnterBattle(transform);
+            Vector3 battlePosition = transform.position; 
+            cameraFollow.EnterBattle(battlePosition);
         }
     }
-    
-    
 
-// When battle ends
-    void EndBattle()
+    public void EndBattle()
     {
         cameraFollow.ExitBattle();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
