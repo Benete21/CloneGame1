@@ -20,8 +20,10 @@ public class BattleSystem : MonoBehaviour
 
     public Text dialogueText;
     public Text BraveText;
+    public Text FinalAmount;
     public int BP_Points;
     public int Brave_counter = 0;
+    public int FinalAttack;
 
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
@@ -32,6 +34,8 @@ public class BattleSystem : MonoBehaviour
     public Text[] AttackCardsNumbers = new Text[4];
     public GameObject AttackCardUI;
     public GameObject PlayerUIABDR;
+
+   
 
     // Start is called before the first frame update
     void Start()
@@ -59,9 +63,9 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
-    IEnumerator PlayerAttack01()
+    IEnumerator PlayerAttack()
     {
-        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage01);
+        bool isDead = enemyUnit.EnemyTakeDamage(FinalAttack);
 
         enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
         dialogueText.text = "The attack is successful!";
@@ -79,71 +83,6 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
     }
-    IEnumerator PlayerAttack02()
-    {
-        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage02);
-
-        enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
-        dialogueText.text = "The attack is successful!";
-
-        yield return new WaitForSeconds(2f);
-
-        if (isDead)
-        {
-            state = BattleState.WON;
-            EndBattle();
-        }
-        else
-        {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
-    }
-    IEnumerator PlayerAttack03()
-    {
-        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage03);
-
-        enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
-        dialogueText.text = "The attack is successful!";
-
-        yield return new WaitForSeconds(2f);
-
-        if (isDead)
-        {
-            state = BattleState.WON;
-            EndBattle();
-        }
-        else
-        {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
-    }
-    IEnumerator PlayerAttack04()
-    {
-        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage04);
-
-        enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
-        dialogueText.text = "The attack is successful!";
-
-        yield return new WaitForSeconds(2f);
-
-        if (isDead)
-        {
-            state = BattleState.WON;
-            EndBattle();
-        }
-        else if (playerUnit.BP_Point > -2)
-        {
-            state = BattleState.PLAYERTURN;
-        }
-        else
-        {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
-    }
-
     IEnumerator EnemyTurn()
     {
         dialogueText.text = enemyUnit.Plyer_Name + " attacks!";
@@ -198,6 +137,7 @@ public class BattleSystem : MonoBehaviour
        playerUnit.BP_Point += 1;
         playerUnit.BP_Point = Mathf.Max(BP_Points, 0);
         BraveText.text = "BP" + playerUnit.BP_Point.ToString();
+        FinalAttack = 0;
 
 
     }
@@ -216,12 +156,19 @@ public class BattleSystem : MonoBehaviour
     }
     IEnumerator OnBrave()
     {
-        playerUnit.PlayerBrave();
+        if (Brave_counter > -2)
+        {
+            playerUnit.PlayerBrave();
 
-        dialogueText.text = "You Braved";
-        BraveText.text = "BP" + playerUnit.BP_Point.ToString();
-        yield return new WaitForSeconds(2f);
-        Brave_counter++;
+            dialogueText.text = "You Braved";
+            BraveText.text = "BP" + playerUnit.BP_Point.ToString();
+            yield return new WaitForSeconds(2f);
+            Brave_counter++;
+        }
+        else
+        {
+            dialogueText.text = "Cannot Brave Anymore";
+        }
 
 
     }
@@ -247,36 +194,49 @@ public class BattleSystem : MonoBehaviour
         ShowAttacks();
     }
 
+    public void OnAttackButtonConfirm()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+        StartCoroutine(PlayerAttack());
+        playerUnit.BP_Point -= 1;
+    }
+
     public void OnAttackButton01()
     {
         if (state != BattleState.PLAYERTURN)
             return;
-            StartCoroutine(PlayerAttack01());
-            playerUnit.BP_Point -= 1;
-
+            FinalAttack += playerUnit.damage01;
+        FinalAmount.text = FinalAttack.ToString();
+           
     }
     public void OnAttackButton02()
     {
         if (state != BattleState.PLAYERTURN)
             return;
-            StartCoroutine(PlayerAttack02());
-            playerUnit.BP_Point -= 1;
+            FinalAttack += playerUnit.damage02;
+        FinalAmount.text = FinalAttack.ToString();
+
+
 
     }
     public void OnAttackButton03()
     {
         if (state != BattleState.PLAYERTURN)
             return;
-            StartCoroutine(PlayerAttack03());
-            playerUnit.BP_Point -= 1;
+        FinalAttack += playerUnit.damage03;
+        FinalAmount.text = FinalAttack.ToString();
+
+
 
     }
     public void OnAttackButton04()
     {
         if (state != BattleState.PLAYERTURN)
             return;
-            StartCoroutine(PlayerAttack04());
-            playerUnit.BP_Point -= 1;
+        FinalAttack += playerUnit.damage04;
+        FinalAmount.text = FinalAttack.ToString();
+        
 
     }
 
