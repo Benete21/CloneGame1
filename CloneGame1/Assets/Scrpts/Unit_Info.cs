@@ -21,6 +21,7 @@ public class Unit_Info : MonoBehaviour
     public int damage04;
     public int damageEnemy;
     public int Gold;
+    public int GoldEnemy;
 
     public int BP_Point;
 
@@ -58,6 +59,6 @@ public class Unit_Info : MonoBehaviour
     }
     public void PlayerDefault()
     {
-        BP_Point += 1;
+        BP_Point += 2;
     }
 }

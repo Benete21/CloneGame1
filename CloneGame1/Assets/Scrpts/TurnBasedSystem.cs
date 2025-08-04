@@ -21,6 +21,7 @@ public class BattleSystem : MonoBehaviour
     public Text dialogueText;
     public Text BraveText;
     public Text FinalAmount;
+    public Text Goldtext;
     public int BP_Points;
     public int Brave_counter = 0;
     public int FinalAttack;
@@ -89,7 +90,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         bool MoveAgain = true;
-        if(playerUnit.BP_Point == -1 || playerUnit.BP_Point == -2)
+        if(playerUnit.BP_Point > 0)
         {
             MoveAgain = false;
         }
@@ -146,6 +147,9 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             dialogueText.text = "You won the battle!";
+            playerUnit.Gold += (playerUnit.GoldEnemy += Random.Range(10, 60));
+            Goldtext.text = "Gold: "+playerUnit.Gold.ToString();
+            
         }
         else if (state == BattleState.LOST)
         {
@@ -182,15 +186,24 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerHeal()
     {
-        playerUnit.HealPlayer(5);
+        if (playerUnit.Gold >= 30)
+        {
+            playerUnit.HealPlayer(Random.Range(5, 40));
 
-        playerHUD.SetHP(playerUnit.Player_Health_Curr);
-        dialogueText.text = "You feel renewed strength!";
+            playerUnit.Gold -= 30;
+            playerHUD.SetHP(playerUnit.Player_Health_Curr);
+            dialogueText.text = "You feel renewed strength!";
 
-        yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f);
 
-        state = BattleState.ENEMYTURN;
-        StartCoroutine(EnemyTurn());
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+        else
+        {
+            state = BattleState.PLAYERTURN;
+            dialogueText.text = "Not Enough Gold";
+        }
     }
     IEnumerator OnBrave()
     {
