@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+public enum BattleState { START, PLAYERTURN, ENEMYTURN,ENEMYTURNREPEAT, WON, LOST }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -85,7 +85,40 @@ public class BattleSystem : MonoBehaviour
     }
     IEnumerator EnemyTurn()
     {
-        dialogueText.text = enemyUnit.Plyer_Name + " attacks!";
+        dialogueText.text = enemyUnit.Enemy_Name + " attacks!";
+
+        yield return new WaitForSeconds(1f);
+        bool MoveAgain = false;
+        if(playerUnit.BP_Point < 0)
+        {
+            MoveAgain = true;
+        }
+
+            bool isDead = playerUnit.PlayerTakeDamage(enemyUnit.damageEnemy += Random.Range(10, 40));
+
+            playerHUD.SetHP(playerUnit.Player_Health_Curr);
+
+            yield return new WaitForSeconds(1f);
+            if (isDead)
+            {
+                state = BattleState.LOST;
+                EndBattle();
+            }
+            else if (MoveAgain)
+            {
+                state = BattleState.ENEMYTURNREPEAT;
+            yield return StartCoroutine(EnemyTurnAgain());
+            playerUnit.BP_Point += 1;
+        }
+        else
+        {
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
+        }
+    }
+    IEnumerator EnemyTurnAgain()
+    {
+        dialogueText.text = enemyUnit.Enemy_Name + " attacks! again";
 
         yield return new WaitForSeconds(1f);
 
@@ -96,7 +129,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         if (isDead)
-        {
+        {            playerUnit.BP_Point += 1;
             state = BattleState.LOST;
             EndBattle();
         }
@@ -105,7 +138,6 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
             PlayerTurn();
         }
-
     }
 
     void EndBattle()
@@ -138,6 +170,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.BP_Point = Mathf.Max(BP_Points, 0);
         BraveText.text = "BP" + playerUnit.BP_Point.ToString();
         FinalAttack = 0;
+        FinalAmount.text = FinalAttack.ToString();
 
         foreach (GameObject i in AttackCards)
         {
