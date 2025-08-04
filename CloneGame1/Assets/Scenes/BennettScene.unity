@@ -312,7 +312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 94742739}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1226264187}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: OnAttackButton02
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &94742739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,7 +1490,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 939801290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1226264187}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: OnAttackButton01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &939801290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,6 +2201,11 @@ MonoBehaviour:
   - {fileID: 94742736}
   - {fileID: 1424875992}
   - {fileID: 1855573062}
+  AttackCardsNumbers:
+  - {fileID: 1534443769}
+  - {fileID: 637447127}
+  - {fileID: 1459763049}
+  - {fileID: 1291301556}
   AttackCardUI: {fileID: 1470454406}
   PlayerUIABDR: {fileID: 647990141}
 --- !u!4 &1226264188
@@ -2675,7 +2704,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1424875995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1226264187}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: OnAttackButton03
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1424875995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3551,6 +3592,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  AttackCardsNumbers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   AttackCardUI: {fileID: 0}
   PlayerUIABDR: {fileID: 0}
 --- !u!114 &1636596227
@@ -3842,7 +3888,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1855573065}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1226264187}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: OnAttackButton04
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1855573065
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,11 @@ public class Unit_Info : MonoBehaviour
     public int Enemy_Health_Max;
     public int Enemy_Health_Curr;
 
-    public int damage;
+    public int damage01;
+    public int damage02;
+    public int damage03;
+    public int damage04;
+    public int damageEnemy;
     public int Gold;
 
     public int BP_Point;
@@ -49,7 +53,7 @@ public class Unit_Info : MonoBehaviour
     }
     public void PlayerBrave()
     {
-        if(BP_Point >= -2)
+        if(BP_Point > -2)
         BP_Point -= 1;
     }
     public void PlayerDefault()

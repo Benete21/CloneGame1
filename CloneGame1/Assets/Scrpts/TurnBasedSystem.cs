@@ -21,6 +21,7 @@ public class BattleSystem : MonoBehaviour
     public Text dialogueText;
     public Text BraveText;
     public int BP_Points;
+    public int Brave_counter = 0;
 
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
@@ -28,6 +29,7 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     public GameObject [] AttackCards = new GameObject[4];
+    public Text[] AttackCardsNumbers = new Text[4];
     public GameObject AttackCardUI;
     public GameObject PlayerUIABDR;
 
@@ -57,9 +59,9 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
-    IEnumerator PlayerAttack()
+    IEnumerator PlayerAttack01()
     {
-        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage);
+        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage01);
 
         enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
         dialogueText.text = "The attack is successful!";
@@ -77,6 +79,70 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
     }
+    IEnumerator PlayerAttack02()
+    {
+        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage02);
+
+        enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
+        dialogueText.text = "The attack is successful!";
+
+        yield return new WaitForSeconds(2f);
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+    }
+    IEnumerator PlayerAttack03()
+    {
+        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage03);
+
+        enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
+        dialogueText.text = "The attack is successful!";
+
+        yield return new WaitForSeconds(2f);
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+    }
+    IEnumerator PlayerAttack04()
+    {
+        bool isDead = enemyUnit.EnemyTakeDamage(playerUnit.damage04);
+
+        enemyHUD.SetHP(enemyUnit.Enemy_Health_Curr);
+        dialogueText.text = "The attack is successful!";
+
+        yield return new WaitForSeconds(2f);
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else if (playerUnit.BP_Point > -2)
+        {
+            state = BattleState.PLAYERTURN;
+        }
+        else
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+    }
 
     IEnumerator EnemyTurn()
     {
@@ -84,7 +150,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.PlayerTakeDamage(enemyUnit.damage);
+        bool isDead = playerUnit.PlayerTakeDamage(enemyUnit.damageEnemy += Random.Range(10, 40));
 
         playerHUD.SetHP(playerUnit.Player_Health_Curr);
 
@@ -118,6 +184,22 @@ public class BattleSystem : MonoBehaviour
     void PlayerTurn()
     {
         dialogueText.text = "Choose an action:";
+
+        playerUnit.damage01 = Random.Range(10, 50);
+        playerUnit.damage02 = Random.Range(20, 40);
+        playerUnit.damage03 = Random.Range(30, 60);
+        playerUnit.damage04 = Random.Range(10, 70);
+
+        AttackCardsNumbers[0].text = playerUnit.damage01.ToString();
+        AttackCardsNumbers[1].text = playerUnit.damage02.ToString();
+        AttackCardsNumbers[2].text = playerUnit.damage03.ToString();
+        AttackCardsNumbers[3].text = playerUnit.damage04.ToString();
+
+       playerUnit.BP_Point += 1;
+        playerUnit.BP_Point = Mathf.Max(BP_Points, 0);
+        BraveText.text = "BP" + playerUnit.BP_Point.ToString();
+
+
     }
 
     IEnumerator PlayerHeal()
@@ -138,14 +220,10 @@ public class BattleSystem : MonoBehaviour
 
         dialogueText.text = "You Braved";
         BraveText.text = "BP" + playerUnit.BP_Point.ToString();
-
         yield return new WaitForSeconds(2f);
+        Brave_counter++;
 
-        if(playerUnit.BP_Point == -2)
-        {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
+
     }
 
     IEnumerator OnDefault()
@@ -169,12 +247,37 @@ public class BattleSystem : MonoBehaviour
         ShowAttacks();
     }
 
-    public void OnAttackButton()
+    public void OnAttackButton01()
     {
         if (state != BattleState.PLAYERTURN)
             return;
+            StartCoroutine(PlayerAttack01());
+            playerUnit.BP_Point -= 1;
 
-        StartCoroutine(PlayerAttack());
+    }
+    public void OnAttackButton02()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+            StartCoroutine(PlayerAttack02());
+            playerUnit.BP_Point -= 1;
+
+    }
+    public void OnAttackButton03()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+            StartCoroutine(PlayerAttack03());
+            playerUnit.BP_Point -= 1;
+
+    }
+    public void OnAttackButton04()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+            StartCoroutine(PlayerAttack04());
+            playerUnit.BP_Point -= 1;
+
     }
 
     public void OnHealButton()
