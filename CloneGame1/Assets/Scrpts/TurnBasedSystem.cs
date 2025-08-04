@@ -88,10 +88,10 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = enemyUnit.Enemy_Name + " attacks!";
 
         yield return new WaitForSeconds(1f);
-        bool MoveAgain = false;
-        if(playerUnit.BP_Point < 0)
+        bool MoveAgain = true;
+        if(playerUnit.BP_Point == -1 || playerUnit.BP_Point == -2)
         {
-            MoveAgain = true;
+            MoveAgain = false;
         }
 
             bool isDead = playerUnit.PlayerTakeDamage(enemyUnit.damageEnemy += Random.Range(10, 40));
@@ -107,8 +107,9 @@ public class BattleSystem : MonoBehaviour
             else if (MoveAgain)
             {
                 state = BattleState.ENEMYTURNREPEAT;
-            yield return StartCoroutine(EnemyTurnAgain());
+            StartCoroutine(EnemyTurnAgain());
             playerUnit.BP_Point += 1;
+            BraveText.text = playerUnit.BP_Point.ToString();
         }
         else
         {
@@ -129,7 +130,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         if (isDead)
-        {            playerUnit.BP_Point += 1;
+        {           
             state = BattleState.LOST;
             EndBattle();
         }
