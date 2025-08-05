@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -35,15 +36,19 @@ public class BattleSystem : MonoBehaviour
     public Text[] AttackCardsNumbers = new Text[4];
     public GameObject AttackCardUI;
     public GameObject PlayerUIABDR;
+    public GameObject BattleScreenUI;
 
-   
 
     // Start is called before the first frame update
-    void Start()
+    public void StartBattle()
     {
+
+        BattleScreenUI.SetActive(true);
         state = BattleState.START;
         StartCoroutine(SetupBattle());
     }
+
+    
 
     IEnumerator SetupBattle()
     {
