@@ -6,16 +6,19 @@ using UnityEngine;
 public class TriggerSystem : MonoBehaviour
 {
     public CameraFollow cameraFollow;
-    public TurnBattleSystem TBS;
     public GameObject StartScreen;
+    public void Start()
+    {
+        StartScreen.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Vector3 battlePosition = transform.position; 
-            cameraFollow.EnterBattle(battlePosition);
-            StartCoroutine(ShowBattleScene());
+                Vector3 battlePosition = transform.position;
+                cameraFollow.EnterBattle(battlePosition);
+                StartCoroutine(ShowBattleScene());
         }
     }
 
