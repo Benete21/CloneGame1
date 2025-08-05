@@ -86,4 +86,8 @@ public class UI_MANAGER : MonoBehaviour
         BlackSqaure.color = colour;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
