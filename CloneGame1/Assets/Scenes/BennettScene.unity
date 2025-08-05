@@ -1028,6 +1028,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 687883642}
+  TBS: {fileID: 1226264187}
+  StartScreen: {fileID: 9107368}
 --- !u!58 &509454047
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3055,6 +3057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 687883642}
+  TBS: {fileID: 0}
+  StartScreen: {fileID: 0}
 --- !u!58 &1213066334
 CircleCollider2D:
   m_ObjectHideFlags: 0

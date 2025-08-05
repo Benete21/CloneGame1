@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN,ENEMYTURNREPEAT, WON, LOST }
 
-public class BattleSystem : MonoBehaviour
+public class TurnBattleSystem : MonoBehaviour
 {
 
     public GameObject playerPrefab;
