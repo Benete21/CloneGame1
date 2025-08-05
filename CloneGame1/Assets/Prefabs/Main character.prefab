@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 2d0887f84a64c2e4ea84d3fde356e52f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59,6 +63,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 2d0887f84a64c2e4ea84d3fde356e52f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 198194032761111864}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 2d0887f84a64c2e4ea84d3fde356e52f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2078046235472338860}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 2d0887f84a64c2e4ea84d3fde356e52f, type: 3}
 --- !u!1 &7618103148645167064 stripped
 GameObject:
@@ -86,3 +93,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2078046235472338860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618103148645167064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9759248737d11d34b8ebb13b9958c93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Plyer_Name: John
+  Enemy_Name: Jonh
+  Player_Health_Max: 100
+  Player_Health_Curr: 100
+  Enemy_Health_Max: 100
+  Enemy_Health_Curr: 100
+  damage01: 0
+  damage02: 0
+  damage03: 0
+  damage04: 0
+  damageEnemy: 0
+  Gold: 0
+  GoldEnemy: 0
+  BP_Point: 0

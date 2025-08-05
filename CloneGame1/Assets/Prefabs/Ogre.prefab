@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: b3169bd845f70f44cbcc9a8760bd73c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6030866045517267677}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: b3169bd845f70f44cbcc9a8760bd73c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -959943982286924916}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: b3169bd845f70f44cbcc9a8760bd73c2, type: 3}
 --- !u!1 &5018671795543053162 stripped
 GameObject:
@@ -86,3 +89,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-959943982286924916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018671795543053162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9759248737d11d34b8ebb13b9958c93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Plyer_Name: 
+  Enemy_Name: Ogre
+  Player_Health_Max: 0
+  Player_Health_Curr: 0
+  Enemy_Health_Max: 150
+  Enemy_Health_Curr: 150
+  damage01: 0
+  damage02: 0
+  damage03: 0
+  damage04: 0
+  damageEnemy: 0
+  Gold: 0
+  GoldEnemy: 0
+  BP_Point: 0

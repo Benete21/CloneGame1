@@ -11,7 +11,7 @@ public class TurnBattleSystem : MonoBehaviour
 {
 
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    public GameObject [] enemyPrefab = new GameObject[2] ;
 
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
@@ -37,6 +37,9 @@ public class TurnBattleSystem : MonoBehaviour
     public GameObject AttackCardUI;
     public GameObject PlayerUIABDR;
     public GameObject BattleScreenUI;
+    public TriggerSystem ts;
+    public GameObject grass;
+    public PlayerMovement pm;
 
 
     // Start is called before the first frame update
@@ -55,8 +58,16 @@ public class TurnBattleSystem : MonoBehaviour
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
         playerUnit = playerGO.GetComponent<Unit_Info>();
 
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-        enemyUnit = enemyGO.GetComponent<Unit_Info>();
+        if (pm.Enemy1 == true)
+        {
+            GameObject enemyGO = Instantiate(enemyPrefab[0], enemyBattleStation);
+            enemyUnit = enemyGO.GetComponent<Unit_Info>();
+        }else if (pm.Enemy2 == true)
+        {
+            GameObject enemyGO = Instantiate(enemyPrefab[1], enemyBattleStation);
+            enemyUnit = enemyGO.GetComponent<Unit_Info>();
+        }
+
 
         dialogueText.text = "A wild " + enemyUnit.Enemy_Name + " approaches...";
 
@@ -95,7 +106,7 @@ public class TurnBattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         bool MoveAgain = true;
-        if(playerUnit.BP_Point > 0)
+        if(playerUnit.BP_Point > -1)
         {
             MoveAgain = false;
         }
@@ -154,7 +165,10 @@ public class TurnBattleSystem : MonoBehaviour
             dialogueText.text = "You won the battle!";
             playerUnit.Gold += (playerUnit.GoldEnemy += Random.Range(10, 60));
             Goldtext.text = "Gold: "+playerUnit.Gold.ToString();
-            
+            BattleScreenUI.SetActive(false);
+            grass.SetActive(true);
+
+
         }
         else if (state == BattleState.LOST)
         {
@@ -212,7 +226,7 @@ public class TurnBattleSystem : MonoBehaviour
     }
     IEnumerator OnBrave()
     {
-        if (playerUnit.BP_Point > 0)
+        if (playerUnit.BP_Point > -1)
         {
             playerUnit.PlayerBrave();
 

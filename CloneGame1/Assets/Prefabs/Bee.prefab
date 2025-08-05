@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: c5fa8190b4ae4fe428e1306e9ff0e51e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4285459221267820438}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: c5fa8190b4ae4fe428e1306e9ff0e51e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1492215124582520394}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: c5fa8190b4ae4fe428e1306e9ff0e51e, type: 3}
 --- !u!1 &7359925596846648154 stripped
 GameObject:
@@ -86,3 +89,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1492215124582520394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359925596846648154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9759248737d11d34b8ebb13b9958c93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Plyer_Name: 
+  Enemy_Name: Bee
+  Player_Health_Max: 0
+  Player_Health_Curr: 0
+  Enemy_Health_Max: 70
+  Enemy_Health_Curr: 70
+  damage01: 0
+  damage02: 0
+  damage03: 0
+  damage04: 0
+  damageEnemy: 40
+  Gold: 40
+  GoldEnemy: 40
+  BP_Point: 0
