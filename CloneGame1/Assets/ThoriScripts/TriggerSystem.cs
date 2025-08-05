@@ -36,4 +36,5 @@ public class TriggerSystem : MonoBehaviour
         Grass.SetActive(false);
         // Time.timeScale = 0f;
     }
+
 }

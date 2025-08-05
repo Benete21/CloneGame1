@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject enenmy_01Object;
     public GameObject enenmy_02Object;
+
+    public Vector3 targetEnemy1Position;
+    public Vector3 targetEnemy2Position;
+    public Vector3 originalPositionEnemy1;
+    public Vector3 originalPositionEnemy2;
 
     private void Start()
     {
@@ -43,28 +49,44 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy_1"))
+        if (collision.CompareTag("Enemy_2"))
         {
             Enemy2 = false;
             Enemy1 = true;
-            StartCoroutine(Enemy_01Destroy());
+            StartCoroutine(Enemy_02Destroy());
         }
-        else if (collision.CompareTag("Enemy_2"))
+        else if (collision.CompareTag("Enemy_1"))
         {
             Enemy1 = false;
             Enemy2 = true;
-            StartCoroutine(Enemy_02Destroy());
+            StartCoroutine(Enemy_01Destroy());
         }
     }
 
     IEnumerator Enemy_01Destroy()
     {
-        yield return new WaitForSeconds(2f);
-        Destroy(enenmy_01Object);
+
+        // Move to the new position
+        enenmy_02Object.transform.position = targetEnemy1Position;
+
+
+        // Wait for a few seconds
+        yield return new WaitForSeconds(5);
+
+        // Move back to original position
+        enenmy_02Object.transform.position = originalPositionEnemy1;
     }
     IEnumerator Enemy_02Destroy()
     {
-        yield return new WaitForSeconds(2f);
-        Destroy(enenmy_02Object);
+
+
+        // Move to the new position
+        enenmy_01Object.transform.position = targetEnemy2Position;
+
+        // Wait for a few seconds
+        yield return new WaitForSeconds(5);
+
+        // Move back to original position
+        enenmy_01Object.transform.position = originalPositionEnemy2;
     }
 }

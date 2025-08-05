@@ -31,6 +31,7 @@ public class CameraFollow : MonoBehaviour
 
     public void ExitBattle()
     {
+
         battleCam.Priority = 5;
         playerCam.Priority = 20;
     }

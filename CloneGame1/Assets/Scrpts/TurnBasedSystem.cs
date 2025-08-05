@@ -40,6 +40,7 @@ public class TurnBattleSystem : MonoBehaviour
     public TriggerSystem ts;
     public GameObject grass;
     public PlayerMovement pm;
+    public CameraFollow camerafollow;
 
 
     // Start is called before the first frame update
@@ -168,6 +169,7 @@ public class TurnBattleSystem : MonoBehaviour
             BattleScreenUI.SetActive(false);
             grass.SetActive(true);
 
+            camerafollow.ExitBattle();
 
         }
         else if (state == BattleState.LOST)
@@ -402,6 +404,12 @@ public class TurnBattleSystem : MonoBehaviour
         PlayerUIABDR.SetActive(true );
         AttackCardUI.SetActive(false);
 
+    }
+
+    public void OnRun()
+    {
+        BattleScreenUI.SetActive(false);
+        grass.SetActive(true);
     }
 }
 
