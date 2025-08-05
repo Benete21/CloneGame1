@@ -7,6 +7,8 @@ public class TriggerSystem : MonoBehaviour
 {
     public CameraFollow cameraFollow;
     public GameObject StartScreen;
+    public TurnBattleSystem turnBattleSystem;
+    public GameObject Grass;
     public void Start()
     {
         StartScreen.SetActive(false);
@@ -30,5 +32,8 @@ public class TriggerSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         StartScreen.SetActive(true);
+        turnBattleSystem.StartBattle();
+        Grass.SetActive(false);
+        // Time.timeScale = 0f;
     }
 }
