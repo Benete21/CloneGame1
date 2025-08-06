@@ -524,7 +524,7 @@ Transform:
   m_GameObject: {fileID: 118320333}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 549, y: 98, z: -6.472126}
+  m_LocalPosition: {x: 549, y: -123, z: -6.472126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4256,10 +4256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e7ccb792b8db47ada5def140179ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7618103148645167064, guid: b1b4be11471c3ab40915cbe51cb913c0, type: 3}
+  playerPrefab: {fileID: 7618103148645167064, guid: 35beba56e9226f245b268090814e6529, type: 3}
   enemyPrefab:
-  - {fileID: 5018671795543053162, guid: 1e2a93c0de8907d499922b4c6e99556b, type: 3}
-  - {fileID: 7359925596846648154, guid: 8873c06139b29de4099b34d18807a135, type: 3}
+  - {fileID: 5018671795543053162, guid: a6ac38f77a1d81f478003617e15f7303, type: 3}
+  - {fileID: 7359925596846648154, guid: 792d5f34117a58348adc37e62af43f41, type: 3}
   playerBattleStation: {fileID: 2021342325}
   enemyBattleStation: {fileID: 118320334}
   dialogueText: {fileID: 860998151}
@@ -7874,7 +7874,7 @@ Transform:
   m_GameObject: {fileID: 2021342324}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -520, y: 51, z: -6.472126}
+  m_LocalPosition: {x: -520, y: -98, z: -6.472126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
