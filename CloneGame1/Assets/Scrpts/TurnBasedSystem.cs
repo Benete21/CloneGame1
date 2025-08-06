@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN,ENEMYTURNREPEAT, WON, LOST }
@@ -41,6 +42,7 @@ public class TurnBattleSystem : MonoBehaviour
     public GameObject grass;
     public PlayerMovement pm;
     public CameraFollow camerafollow;
+    public GameObject GameOver;
 
 
     // Start is called before the first frame update
@@ -175,6 +177,8 @@ public class TurnBattleSystem : MonoBehaviour
         else if (state == BattleState.LOST)
         {
             dialogueText.text = "You were defeated.";
+            GameOver.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
@@ -410,6 +414,12 @@ public class TurnBattleSystem : MonoBehaviour
     {
         BattleScreenUI.SetActive(false);
         grass.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 }
 
