@@ -23,21 +23,17 @@ public class UI_MANAGER : MonoBehaviour
     {
         startScreen.SetActive(false);
         playScreen.SetActive(true);
+
     }
 
     public void PlayButton()
     {
-        Topdown();
+        SceneManager.LoadScene("BennettScene");
     }
 
     public void Start()
     {
         StartMenu();
-    }
-
-    public void Topdown()
-    {
-        SceneManager.LoadScene("ThorisoScene");
     }
 
     public void BattleState()
